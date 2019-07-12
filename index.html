@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+  </head>
+
+  <body class="uk-container">
+    <h1 class="uk-heading-medium">FFXIV-Crystal-Exarch-Summon</h1>
+    <p>さあ・・・時空を超えて来たれ・・・！ ひとたび我らに力を貸したまえ・・・！ 彼方の勇士、稀なるつわものたちよ・・・ッ！</p>
+
+    <form class="uk-form-horizontal uk-margin-large">
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-horizontal-select">Your job</label>
+            <div class="uk-form-controls">
+                <select class="uk-select" id="form-horizontal-select">
+                  <optgroup label="タンク">
+                    <option>ナイト</option>
+                    <option>戦士</option>
+                    <option>暗黒騎士</option>
+                    <option>ガンブレイカー</option>
+                  </optgroup>
+                  <optgroup label="ヒーラー">
+                    <option>白魔道士</option>
+                    <option>学者</option>
+                    <option>占星術師</option>
+                  </optgroup>
+                  <optgroup label="近接物理 DPS">
+                    <option>モンク</option>
+                    <option>竜騎士</option>
+                    <option>忍者</option>
+                    <option>侍</option>
+                  </optgroup>
+                  <optgroup label="遠隔物理 DPS">
+                    <option>吟遊詩人</option>
+                    <option>機工士</option>
+                    <option>踊り子</option>
+                  </optgroup>
+                  <optgroup label="遠隔魔法 DPS">
+                    <option>黒魔道士</option>
+                    <option>召喚士</option>
+                    <option>赤魔道士</option>
+                  </optgroup>
+                </select>
+            </div>
+        </div>
+
+        <button id='btn' class="uk-button uk-button-primary" type="button">召喚する</button>
+    </form>
+
+    <pre id="crystal-exarch-summon" class="uk-background-muted"></pre>
+
+    <hr />
+
+    <ul class='uk-list'>
+      <li>元ネタ: <a href="https://jp.finalfantasyxiv.com/lodestone/character/17340257/blog/4163557">Yuki Demo 日記「水晶公に関する考察」 | FINAL FANTASY XIV, The Lodestone</a></li>
+      <li>元ネタレポジトリ (Github) : <a href="https://github.com/yukidemo/FFXIV-Crystal-Exarch-Summon">yukidemo/FFXIV-Crystal-Exarch-Summon</a></li>
+    </ul>
+
+
+
+    <script type="text/javascript">
+      (() => {
+        'use strict';
+
+        const button = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+          const worlds = ['第四世界','第八世界','第九世界','第十一世界'];
+          const jobs = ['戦士','ナイト','暗黒騎士','ガンブレイカー','モンク','忍者','竜騎士','侍',
+            '吟遊詩人','機工士','踊り子','黒魔道士','赤魔道士','召喚士',
+            '白魔道士','学者','占星術師'];
+
+          let hero = [];
+          let hero_world = [];
+          let text = '';
+
+          text += '水晶公：さあ・・・時空を超えて来たれ・・・！\n';
+          text += '水晶公：ひとたび我らに力を貸したまえ・・・！\n';
+          text += '水晶公：彼方の勇士、稀なるつわものたちよ・・・ッ！\n';
+          text += '＼ピカー！／\n';
+          text += '水晶公：イカれた英雄たちを紹介するぜ！！\n\n';
+
+          for (let i = 0; i < 7; i++) {
+            hero.push(jobs[Math.floor(Math.random() * jobs.length)]);
+            hero_world.push(worlds[Math.floor(Math.random() * worlds.length)]);
+          }
+
+          for (let i = 0; i < 7; i++) {
+            text += `水晶公：${hero_world[i]}の${hero[i]}！！\n`;
+          }
+
+          text += `水晶公：そして原初世界の${document.getElementById('form-horizontal-select').value}！！！以上だ！！！`;
+
+          document.getElementById('crystal-exarch-summon').textContent = text;
+
+          btn.addEventListener('mousedown', () => {
+            btn.classList.add('pushed');
+          });
+
+          btn.addEventListener('mouseup', () => {
+            btn.classList.remove('pushed');
+          });
+
+        });
+      })();
+    </script>
+  </body>
+</html>
